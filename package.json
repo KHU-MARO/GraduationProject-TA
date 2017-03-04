@@ -1,0 +1,16 @@
+{
+  "name": "autosave",
+  "version": "1.0.0",
+  "description": "Notepad auto saving Windows program",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "Electron",
+		"Autosave",
+		"Windows program"
+  ],
+  "author": "sauber92",
+  "license": "MIT"
+}
