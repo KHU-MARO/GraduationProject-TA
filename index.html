@@ -4,31 +4,42 @@
 	<meta charset="UTF-8">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="renderer.js"></script>
-	<title>Autosave</title>
+	<title>Team608 | Typing Assistant</title>
 </head>
 
 <body>
-	<h1>Notepad Autosave Program</h1>
-	<input type="button" id="btn-readfile" value="elect a file to see its content">
+	<h1>Typing Assistant</h1>
+	<input type="button" id="btn-readfile" value="노트 불러오기">
+	<div>
+		<textarea id="file-section" rows="5" cols="70"></textarea>
+	</div>
 </body>
 
 <script>
-	// filesystem module
-	const fs = require("fs");
+  // Filesystem module
+  const fs = require("fs");
 
-	// Dialogs module
-	const {dialog} = require("electron").remote;
+  // Dialogs module
+  const {dialog} = require("electron").remote;
 
-	document.getElementById("btn-readfile").addEventListener("click", () => {
-	  dialog.showOpenDialog((fileNames) => {
-	    if(fileNames === undefined) {
-	      console.log("No files were selected");
-	      return;
-			}
+  document.getElementById("btn-readfile").addEventListener("click", () => {
+    dialog.showOpenDialog((fileNames) => {
+      if(fileNames === undefined) {
+        console.log("No files were selected");
+        return;
+      }
 
-			fs.readFile()
-	});
-	});
+      fs.readFile(fileNames[0], 'utf-8', (err, data) => {
+        if(err) {
+          console.log("Cannot read file ", err);
+          return;
+        }
+
+        document.getElementById("file-section").value = data;
+        console.log("The content of the file is : " + data);
+      });
+    });
+  });
 </script>
 </html>
 
