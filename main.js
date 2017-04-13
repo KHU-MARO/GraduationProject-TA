@@ -3,7 +3,7 @@ const {app, BrowserWindow} = require('electron');
 let mainWindow;
 
 function onClosed() {
-	mainWindow = null;
+		mainWindow = null;
 }
 
 function createWindow() {

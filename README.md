@@ -1,2 +1,2 @@
-# Autosave
-The Windows program for Notepad auto save
+# Typing Assistant
+The program for Typing Assistant.

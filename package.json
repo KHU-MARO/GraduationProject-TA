@@ -1,16 +1,23 @@
 {
-  "name": "autosave",
+  "name": "typing-assistant",
   "version": "1.0.0",
-  "description": "Notepad auto saving Windows program",
+  "description": "The program for Final Project",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron ." 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sauber92/FinalProject-TA.git"
   },
   "keywords": [
-    "Electron",
-		"Autosave",
-		"Windows program"
+    "electron",
+    "arduino"
   ],
   "author": "sauber92",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sauber92/FinalProject-TA/issues"
+  },
+  "homepage": "https://github.com/sauber92/FinalProject-TA#readme"
 }
