@@ -1,5 +1,4 @@
-let placeLetterInterval = 1000;
-let placeLetterTimer, countDownTimer;
+let countDownTimer;
 let time, score, fileSection;
 let startButton;
 
@@ -10,21 +9,16 @@ function placeLetter() {
   newLetter.className = letter;
 
   fileSection.appendChild(newLetter);
+
+  let letterToNum = letter.charCodeAt(0);
+  console.log(letterToNum);
 }
 
-// function moveLetters() {
-//   let boxes = document.querySelectorAll("#fileSection > div");
-//   for (let i = 0; i < boxes.length; i++) {
-//     if (parseInt(boxes[i].style.right) <= -10) {
-//       endEvent();
-//     }
-//   }
-// }
-
 function endEvent() {
-  clearInterval(moveLettersTimer);
-  clearInterval(placeLetterTimer);
+  clearInterval(countDownTimer);
   document.removeEventListener("keydown", keyboardInput);
+
+  alert("The Score :" + score.innerHTML);
 }
 
 function keyboardInput() {
@@ -33,14 +27,15 @@ function keyboardInput() {
 
   if(boxes[0]) {
     boxes[0].remove();
-    score.innerHTML = parseInt(score.innerHTML) + 1;
+    score.innerHTML = parseInt(score.innerHTML) + 50;
+    placeLetter();
   } else {
-    score.innerHTML = parseInt(score.innerHTML) - 1;
+    score.innerHTML = parseInt(score.innerHTML) - 10;
   }
 }
 
 function startEvent() {
-  placeLetterTimer = setInterval(placeLetter, placeLetterInterval);
+  placeLetter();
   countDownTimer = setInterval(countDown, 1000);
   document.addEventListener("keydown", keyboardInput);
   startButton.classList.add("disabled");
@@ -51,15 +46,17 @@ function startEvent() {
 }
 
 function countDown() {
-  time.innerHTML = parseInt(time.innerHTML) - 1;
-  if(time < 0) { // 이거 조건 다시
+  let countTime = time.innerText;
+
+  if(countTime < 1) {
     endEvent();
+    return;
   }
+
+  time.innerHTML = parseInt(time.innerHTML) - 1;
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-  console.log("renderer.js start");
-
   time = document.getElementById("time");
   score = document.getElementById("score");
   fileSection = document.getElementById("fileSection");
