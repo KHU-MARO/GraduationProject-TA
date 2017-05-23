@@ -1,8 +1,7 @@
-const electron = require('electron');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+var app = require('app');
+var BrowserWindow = require('browser-window');
 
-let mainWindow,
+var mainWindow,
   loadingScreen,
   windowParams = {
     width: 900,
@@ -11,7 +10,7 @@ let mainWindow,
   };
 
 function onClosed() {
-		mainWindow = null;
+  mainWindow = null;
 }
 
 function createLoadingScreen() {
@@ -23,23 +22,23 @@ function createLoadingScreen() {
 
   loadingScreen.webContents.on('did-finish-load', () => {
     loadingScreen.show();
-  });
+});
 }
 
 function createWindow() {
-	mainWindow = new BrowserWindow(windowParams);
+  mainWindow = new BrowserWindow(windowParams);
 
-	mainWindow.loadURL(`file://${__dirname}/index.html`);
+  mainWindow.loadURL(`file://${__dirname}/index.html`);
 
-	mainWindow.webContents.on('did-finish-load', () => {
+  mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
 
-    if (loadingScreen) {
-      let loadingScreenBounds = loadingScreen.getBounds();
-      mainWindow.setBounds(loadingScreenBounds);
-      loadingScreen.close();
-    }
-  });
+  if (loadingScreen) {
+    var loadingScreenBounds = loadingScreen.getBounds();
+    mainWindow.setBounds(loadingScreenBounds);
+    loadingScreen.close();
+  }
+});
 
   mainWindow.on('closed', function() {
     mainWindow = null;
@@ -49,19 +48,19 @@ function createWindow() {
 app.on('ready', () => {
   createLoadingScreen();
 
-  setTimeout(function(){
-    createWindow();
-  }, 2000);
+setTimeout(function(){
+  createWindow();
+}, 2000);
 });
 
 app.on('activate', () => {
-	if(!mainWindow) {
-		createWindow();	
-	}
+  if(!mainWindow) {
+  createWindow();
+}
 });
 
 app.on('window-all-closed', () => {
   if(process.platform != 'darwin') {
-    app.quit();
-  }
+  app.quit();
+}
 });

@@ -1,16 +1,34 @@
-let countDownTimer;
-let time, score, fileSection;
-let startButton;
+var Readable = require('stream').Readable;
+var util = require('util');
+var five = require('johnny-five');
+var board = new five.Board();
+
+var countDownTimer;
+var time, score, fileSection;
+var startButton;
+var letter, letterToNum;
+
+util.inherits(MyStream, Readable);
+function MyStream(opt) {
+  Readable.call(this, opt)
+}
+MyStream.prototype._read = function() {};
+process.__defineGetter__('stdin', function() {
+  if (process.__stdin) return process.__stdin
+  process.__stdin = new MyStream()
+  return process.__stdin
+});
 
 function placeLetter() {
-  let letter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
-  let newLetter = document.createElement("div");
+  letter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+  var newLetter = document.createElement("div");
   newLetter.innerHTML = letter;
   newLetter.className = letter;
 
   fileSection.appendChild(newLetter);
 
-  let letterToNum = letter.charCodeAt(0);
+  letterToNum = letter.charCodeAt(0);
+  console.log(0);
   console.log(letterToNum);
 }
 
@@ -22,8 +40,8 @@ function endEvent() {
 }
 
 function keyboardInput() {
-  let key = String.fromCharCode(event.keyCode).toLowerCase();
-  let boxes = document.getElementsByClassName(key);
+  var key = String.fromCharCode(event.keyCode).toLowerCase();
+  var boxes = document.getElementsByClassName(key);
 
   if(boxes[0]) {
     boxes[0].remove();
@@ -46,7 +64,7 @@ function startEvent() {
 }
 
 function countDown() {
-  let countTime = time.innerText;
+  var countTime = time.innerText;
 
   if(countTime < 1) {
     endEvent();
@@ -63,4 +81,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   startButton = document.getElementById("btnStart");
   startButton.onclick = startEvent;
+});
+
+board.on('ready', function() {
+  var led = new five.Led(13);
+
+  if(letterToNum == 104) {
+    led.on();
+  }
+  else {
+    led.off();
+  }
 });

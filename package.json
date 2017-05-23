@@ -1,23 +1,32 @@
 {
   "name": "typing-assistant",
   "version": "1.0.0",
-  "description": "The program for Final Project",
   "main": "main.js",
   "scripts": {
-    "start": "electron ." 
+    "start": "electron ."
   },
+  "devDependencies": {
+    "electron-rebuild": "^1.1.3"
+  },
+  "dependencies": {
+    "electron-prebuilt": "^0.36.7",
+    "johnny-five": "^0.9.23"
+  },
+  "description": "The program for Graduation Project",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sauber92/FinalProject-TA.git"
+    "url": "git+https://github.com/sauber92/GraduationProject-TA.git"
   },
   "keywords": [
     "electron",
+    "app",
+    "johnny-five",
     "arduino"
   ],
-  "author": "sauber92",
+  "author": "Junyoung Jung(sauber92)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sauber92/FinalProject-TA/issues"
+    "url": "https://github.com/sauber92/GraduationProject-TA/issues"
   },
-  "homepage": "https://github.com/sauber92/FinalProject-TA#readme"
+  "homepage": "https://github.com/sauber92/GraduationProject-TA#readme"
 }
