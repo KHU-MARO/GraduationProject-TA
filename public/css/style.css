@@ -42,6 +42,13 @@ header button {
 
 header #btnStart {
   margin-left: 5px;
+}
+
+.disconnect {
+  background-color: #5c5c5c;
+}
+
+.connect {
   background-color: #7fffd4;
 }
 

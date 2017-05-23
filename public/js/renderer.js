@@ -7,6 +7,7 @@ var countDownTimer;
 var time, score, fileSection;
 var startButton;
 var letter, letterToNum;
+var state = false;
 
 util.inherits(MyStream, Readable);
 function MyStream(opt) {
@@ -28,7 +29,14 @@ function placeLetter() {
   fileSection.appendChild(newLetter);
 
   letterToNum = letter.charCodeAt(0);
-  console.log(0);
+  if(letterToNum == 97 || letterToNum == 104 || letterToNum == 107 || letterToNum == 110 || letterToNum == 112
+    || letterToNum == 114 || letterToNum == 117 || letterToNum == 118 || letterToNum == 119 || letterToNum == 120) {
+    state = true;
+  }
+  else {
+    state = false;
+  }
+  // console.log(0);
   console.log(letterToNum);
 }
 
@@ -85,11 +93,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 board.on('ready', function() {
   var led = new five.Led(13);
+  startButton.className = "connect";
+  startButton.disabled = false;
 
-  if(letterToNum == 104) {
-    led.on();
-  }
-  else {
-    led.off();
-  }
+  document.addEventListener('keydown', function() {
+    if(state) {
+      led.on();
+    }
+    else {
+      led.off();
+    }
+  });
 });
+
