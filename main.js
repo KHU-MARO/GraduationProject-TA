@@ -1,5 +1,6 @@
-var app = require('app');
-var BrowserWindow = require('browser-window');
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
 
 var mainWindow,
   loadingScreen,
@@ -22,7 +23,7 @@ function createLoadingScreen() {
 
   loadingScreen.webContents.on('did-finish-load', () => {
     loadingScreen.show();
-});
+  });
 }
 
 function createWindow() {
@@ -61,6 +62,6 @@ app.on('activate', () => {
 
 app.on('window-all-closed', () => {
   if(process.platform != 'darwin') {
-  app.quit();
-}
+    app.quit();
+  }
 });
