@@ -1,13 +1,15 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const path = require('path');
 
 var mainWindow,
   loadingScreen,
   windowParams = {
     width: 900,
-    height: 600,
-    show: false
+    height: 630,
+    show: false,
+    icon: path.join(__dirname, 'public/img/icons/Icon.png')
   };
 
 function onClosed() {
@@ -49,9 +51,9 @@ function createWindow() {
 app.on('ready', () => {
   createLoadingScreen();
 
-setTimeout(function(){
-  createWindow();
-}, 2000);
+  setTimeout(function(){
+    createWindow();
+  }, 2000);
 });
 
 app.on('activate', () => {

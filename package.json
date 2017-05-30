@@ -1,32 +1,34 @@
 {
-  "name": "electron-serialport",
-  "version": "1.0.1",
-  "description": "A minimal Electron application with node serialport",
+  "name": "GraduationProject-TA",
+  "version": "1.0.0",
+  "description": "The program for Graduation Project",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "install": "electron-rebuild"
+    "dist:osx": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=public/img/icons/Icon.png.icns --prune=true --out=dist",
+    "dist:win32": "node installer.js"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:johnny-five-io/electron-serialport.git"
+    "url": "git+https://github.com/sauber92/GraduationProject-TA.git"
   },
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "Arduino",
+    "Serialport"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Junyoung Jung(sauber92)",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^1.4.1",
-    "electron-rebuild": "^1.4.0"
+    "electron-installer-dmg": "^0.2.1",
+    "electron-rebuild": "^1.4.0",
+    "electron-winstaller": "^2.5.2"
   },
   "dependencies": {
     "app": "^0.1.0",
-    "data-table": "^2.0.0",
+    "electron-packager": "^8.7.0",
+    "path": "^0.12.7",
     "serialport": "^4.0.7"
   }
 }
