@@ -1,6 +1,11 @@
 const serialport = require('serialport');
 const port = new serialport('/dev/cu.usbmodem1411');
 
+var countDownTimer;
+var time, score, fileSection;
+var startButton;
+var letter;
+
 port.on('open', function() {
   port.write('Start', function(err) {
     if (err) {
@@ -10,25 +15,38 @@ port.on('open', function() {
   });
 });
 
-var countDownTimer;
-var time, score, fileSection;
-var startButton;
-var letter, letterToNum;
+port.on('error', function(err) {
+  console.log('Error: ', err.message);
+  startButton.className = "disconnect";
+  startButton.disabled = true;
+});
 
 function placeLetter() {
+  startButton.disabled = true;
   letter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
   var newLetter = document.createElement("div");
   newLetter.innerHTML = letter;
   newLetter.className = letter;
 
   fileSection.appendChild(newLetter);
+  console.log(letter);
 
   // letterToNum = letter.charCodeAt(0);
-  console.log(letter);
+  // console.log(letterToNum);
 
   for(var i = 0; i < 10; i++) {
     port.write(letter);
   }
+}
+
+function startEvent() {
+  placeLetter();
+  countDownTimer = setInterval(countDown, 1000);
+  document.addEventListener("keydown", keyboardInput);
+
+  setTimeout(function() {
+    countDown();
+  }, 60000);
 }
 
 function endEvent() {
@@ -36,6 +54,7 @@ function endEvent() {
   document.removeEventListener("keydown", keyboardInput);
 
   alert("The Score :" + score.innerHTML);
+  location.reload(true);
 }
 
 function keyboardInput() {
@@ -49,17 +68,6 @@ function keyboardInput() {
   } else {
     score.innerHTML = parseInt(score.innerHTML) - 10;
   }
-}
-
-function startEvent() {
-  placeLetter();
-  countDownTimer = setInterval(countDown, 1000);
-  document.addEventListener("keydown", keyboardInput);
-  // startButton.classList.add("disabled");
-
-  setTimeout(function() {
-    countDown();
-  }, 60000);
 }
 
 function countDown() {
