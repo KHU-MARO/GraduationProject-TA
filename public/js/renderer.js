@@ -31,9 +31,6 @@ function placeLetter() {
   fileSection.appendChild(newLetter);
   console.log(letter);
 
-  // letterToNum = letter.charCodeAt(0);
-  // console.log(letterToNum);
-
   for(var i = 0; i < 10; i++) {
     port.write(letter);
   }

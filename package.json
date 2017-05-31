@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist:osx": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=public/img/icons/Icon.png.icns --prune=true --out=dist",
-    "dist:win32": "node installer.js"
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=public/img/icons/Icon.png.icns --prune=true --out=dist",
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=public/img/icons/Icon.ico --prune=true --out=dist"
   },
   "repository": {
     "type": "git",
