@@ -5,8 +5,12 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=public/img/icons/Icon.png.icns --prune=true --out=dist",
-    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=public/img/icons/Icon.ico --prune=true --out=dist"
+    "package:clear": "rm -rf dist",
+    "package:mac": "electron-packager . team608 --overwrite --platform=darwin --arch=x64 --icon=public/img/icons/Icon.png.icns --prune=true --out=dist --version-string.ProductName=\"team608\"",
+    "package:win": "electron-packager . team608 --overwrite --asar=true --platform=win32 --arch=ia32 --icon=public/img/icons/Icon.ico --prune=true --out=dist --version-string.ProductName=\"team608\"",
+    "package:linux" : "electron-packager . team608 --overwrite --platform=linux --arch=x64 --icon=public/img/icons/Icon.png --prune=true --out=dist --version-string.ProductName=\"team608\"",
+    "installer:mac": "npm run package:mac && electron-installer-dmg ./dist/team608-darwin-x64/team608.app team608 --out=./dist",
+    "installer:win": "npm run package:win && asar pack ./dist/team608-win32-x64/resources/app ./dist/team608-win32-x64/resources/app.asar && node installer/installer.js"
   },
   "repository": {
     "type": "git",
