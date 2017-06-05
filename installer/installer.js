@@ -1,8 +1,8 @@
 var electronInstaller = require('electron-winstaller');
 
 resultPromise = electronInstaller.createWindowsInstaller({
-  appDirectory: './dist/team608-win32-x64',
-  authors: 'Junyoung Jung(sauber92)',
+  appDirectory: './dist/team608-win32-ia32',
+  authors: 'JunyoungJung',
   outputDirectory: './dist/installer-win32-x64',
   exe: 'team608.exe',
   setupExe: 'team608-Setup.exe',

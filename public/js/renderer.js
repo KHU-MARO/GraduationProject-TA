@@ -1,5 +1,5 @@
 const serialport = require('serialport');
-const port = new serialport('/dev/cu.usbmodem1411');
+const port = new serialport('/dev/tty.usbmodem1421');
 
 var countDownTimer;
 var time, score, fileSection;
