@@ -5,6 +5,9 @@
 
 ## 프로젝트 소개
 
+![](https://github.com/sauber92/GraduationProject-Doc/blob/master/Documentation/Reference/TA-icon/icon.png?raw=true)  
+<br/>
+
 [GraduationProject-Doc Github 레파지토리](https://github.com/sauber92/GraduationProject-Doc)  
 
 ***
